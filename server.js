@@ -1,9 +1,10 @@
 const express = require("express");
 const nmap = require("node-nmap");
+const path = require("path");
 const app = express();
 const port = process.env.PORT || 5000;
 
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 
 // Scan for open ports
@@ -19,7 +20,10 @@ app.post("/api/scan", (req, res) => {
 
   scan.start((error, report) => {
     if (error) {
-      return res.status(500).json({ error: error.message });
+      console.error("Error during scan:", error);
+      return res
+        .status(500)
+        .json({ error: "An error occurred during the scan." });
     }
     res.json({ report });
   });

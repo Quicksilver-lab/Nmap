@@ -17,14 +17,15 @@ document.addEventListener("DOMContentLoaded", () => {
           body: JSON.stringify({ target }),
         });
 
-        if (response.ok) {
-          const data = await response.json();
-          scanOutput.textContent = JSON.stringify(data.report, null, 2);
-        } else {
-          const error = await response.json();
-          scanOutput.textContent = `Error: ${error.error}`;
+        if (!response.ok) {
+          throw new Error(`Server error: ${response.statusText}`);
         }
+
+        const data = await response.json();
+        console.log("Scan results:", data); // Log the result for debugging
+        scanOutput.textContent = JSON.stringify(data.report, null, 2);
       } catch (error) {
+        console.error("Error:", error); // Log error details
         scanOutput.textContent = `Error: ${error.message}`;
       }
     }
