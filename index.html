@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Network Scanner and Port Checker</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Network Scanner and Port Checker</h1>
+      <form id="scan-form">
+        <input
+          type="text"
+          id="target"
+          placeholder="Enter IP or domain"
+          required
+        />
+        <button type="submit">Scan</button>
+      </form>
+      <div id="results">
+        <h2>Scan Results</h2>
+        <pre id="scan-output"></pre>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
